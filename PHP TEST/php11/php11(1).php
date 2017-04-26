@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <meta charset="utf-8">
     <title>PHP</title>
 </head>
 <body>

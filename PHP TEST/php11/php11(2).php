@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <meta charset="utf-8">
     <title>PHP</title>
     <style>
         table, th, td {
@@ -22,7 +22,7 @@ session_start();
 //get and set session
 echo "this is a project:" . $_SESSION["project"] . "<br>";
 echo "this name is:" . $_SESSION["name"] . "<br>";
-$_SESSION["name"] = "张三";
+$_SESSION["name"] = "鏉庡洓";
 echo "now,name is:" . $_SESSION["name"] . "<br>";
 session_unset();//remove all session
 ?>
@@ -38,17 +38,17 @@ session_unset();//remove all session
     ?>
 </table>
 <?php
-//filter_var($variable,FILTER_SANITIZE_STRING)判断是否为字符串
-// filter_var($variable,FILTER_VALIDATE_INT)判断是否是整型
-//filter_var($variable,FILTER_VALIDARTE_IP)判断是否是ip地址
-//filter_var($variable,FILTER_VALIDATE_EMAIL)判断是否是邮箱地址
-//filter_var($variable,FILTER_VALIDATE_URL)判断是否是url
+//filter_var($variable,FILTER_SANITIZE_STRING)鍒ゆ柇鏄惁鏄瓧绗︿覆
+// filter_var($variable,FILTER_VALIDATE_INT)鍒ゆ柇鏄惁鏄暣鍨�
+//filter_var($variable,FILTER_VALIDARTE_IP)鍒ゆ柇鏄惁鏄痠p鍦板潃
+//filter_var($variable,FILTER_VALIDATE_EMAIL)鍒ゆ柇鏄惁鏄偖绠卞湴鍧�
+//filter_var($variable,FILTER_VALIDATE_URL)鍒ゆ柇鏄惁鏄痷rl
 
 $ip = "127.0.0.1";
 if (!filter_var($ip, FILTER_VALIDATE_IP) === false) {
-    echo("$ip 是有效的IP地址");
+    echo("$ip 鏄湁鏁堢殑ip鍦板潃址");
 } else {
-    echo("$ip 不是有效的IP地址");
+    echo("$ip 涓嶆槸鏈夋晥鐨刬p鍦板潃址");
 }
 ?>
 </body>
