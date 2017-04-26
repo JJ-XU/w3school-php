@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 // 创建数据库code
 $sql = "CREATE DATABASE code";
 if ($conn->query($sql) === TRUE) {
-    echo "���ݿⴴ���ɹ�";
+    echo "数据库创建成功";
 } else {
     echo "Error creating database: " . $conn->error;
 }
