@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <meta charset="utf-8">
     <title>PHP FILE</title>
 </head>
 <body>
