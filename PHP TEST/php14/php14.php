@@ -8,7 +8,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-//¶àĞĞ²åÈë ·½·¨Ò»
+//å¤šè¡Œæ’å…¥ æ–¹æ³•ä¸€
 $sql = "INSERT INTO City ( id, name, uname,parent_id,status)
 VALUES (1, 'Guangzhou', 'Guangdong',2,0);";
 $sql .= "INSERT INTO City ( id, name, uname,parent_id,status)
@@ -21,10 +21,11 @@ if ($conn->multi_query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-//·½·¨¶ş
+$conn->close();
+//æ–¹æ³•äºŒ
 $citys = $conn->prepare("INSERT INTO City (id, name, uname,parent_id,status) VALUES (?, ?, ?, ?, ?)");
 $citys->bind_param("issii", $id, $name, $uname,$parent_id,$status);
-// bind_paramµÚÒ»¸ö²ÎÊı i - integer d - double s - string b - BLOB
+// bind_paramç¬¬ä¸€ä¸ªå‚æ•° i - integer d - double s - string b - BLOB
 $id = 4;
 $name = "Qinghai";
 $uname = "Shandong";
