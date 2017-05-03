@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 $sql = "DELETE FROM City WHERE id=2";
 $result = $conn->query($sql);
 if ($conn->query($sql) === TRUE) {
-    echo "É¾³ý³É¹¦";
+    echo "åˆ é™¤æˆåŠŸ";
 } else {
     echo "Error deleting record: " . $conn->error;
 }
@@ -19,7 +19,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 $sql = "SELECT * FROM City";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-    echo "<br>ÁÐ±íÈçÏÂ£º<br>";
+    echo "<br>åˆ—è¡¨å¦‚ä¸‹ï¼š<br>";
     echo "<table><tr><th>id</th><th>name</th><th>shengfen</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["uname"] . "</td></tr>";
