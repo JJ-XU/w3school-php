@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bookshop>
+    <book category="WEB">
+        <title>JavaScript 高级程序设计</title>
+        <author>Nicholas C.Zakas</author>
+        <year>2012</year>
+        <price>99.00</price>
+    </book>
+    <book category="LITERATURE">
+        <title>白夜行</title>
+        <author>东野圭吾</author>
+        <year>2013</year>
+        <price>14.99</price>
+    </book>
+</bookshop>
