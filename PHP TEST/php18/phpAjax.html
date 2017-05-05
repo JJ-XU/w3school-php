@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PHP Ajax</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            width: 300px;
+            margin: 10px auto;
+        }
+
+        input {
+            width: 280px;
+            height: 30px;
+            position: relative;
+            outline-color: #eee;
+        }
+
+        h1 {
+            margin-left: 35%;
+        }
+
+        #result {
+            width: 284px;
+            background: #eee;
+            list-style: none;
+            position: absolute;
+            top: 105px;
+            padding: 0px;
+        }
+
+        #result li {
+            padding-left: 10px;
+            padding-bottom: 5px;
+        }
+
+        #result li:hover {
+            background: #bfbfbf;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <h1>搜索</h1>
+    <input type="text" onkeyup="showStr(this.value)">
+    <ul id="result"></ul>
+</div>
+<script>
+    function showStr(str) {
+        if (str.length == 0) {
+            document.getElementById("result").innerHTML = "";
+            return;
+        } else {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var result = document.getElementById("result");
+                    var input = document.getElementsByTagName("input")[0];
+                    while (result.hasChildNodes()) {
+                        result.removeChild(result.firstChild);
+                    }
+                    var str = this.responseText;
+                    var arr = [];
+                    if (str.length > 0) {
+                        if (str.indexOf(",")) {
+                            arr = str.split(",");
+                            for (var i = 0; i < arr.length; i++) {
+                                var li = creatElement("li", arr[i]);
+                                result.appendChild(li);
+                            }
+                        } else {
+                            var li = creatElement("li", arr[i]);
+                            result.appendChild(li);
+                        }
+                        result.style.display = 'block';
+                        var lis = document.getElementsByTagName("li");
+                        for (var i = 0; i < lis.length; i++) {
+                            lis[i].addEventListener('click', function () {
+                                input.value = this.innerText;
+                                result.style.display = 'none';
+                            });
+                        }
+                    }
+                }
+            };
+            xmlHttp.open("GET", "getstr.php?q=" + str, true);
+            xmlHttp.send();
+        }
+    }
+    function creatElement(tagname, text) {
+        var node = document.createElement(tagname);
+        node.innerText = text;
+        return node;
+    }
+</script>
+</body>
+</html>
