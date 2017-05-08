@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>PHP AJAX and database</title>
+    <script>
+        function showData(str) {
+            if (str == "") {
+                document.getElementById("result").innerHTML = "";
+                return;
+            } else {
+                if (window.XMLHttpRequest) {
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("result").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "getData.php?q=" + str, true);
+                xmlhttp.send();
+            }
+        }
+    </script>
+</head>
+<body>
+<h2>根据字母进行模糊匹配，或者可输入1-4查看</h2>
+<input type="text" onkeyup="showData(this.value)">
+<br>
+
+<div id="result"><b>search result...</b></div>
+</body>
+</html>
+
