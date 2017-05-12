@@ -7,6 +7,10 @@
 <body>
 <?php
 define("MAXNUM", 330);
+/**
+ * 检查输入值与300之间的大小关系
+ * @param $num
+ */
 function checkNum($num)
 {
     if ($num > MAXNUM) {
