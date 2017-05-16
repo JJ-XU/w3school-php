@@ -12,7 +12,9 @@
 </form>
 
 <?php
-//判断请求方式是否是post
+/**
+ * 判断请求方式是否是post
+ */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_REQUEST['filename'];
     $email = $_POST['email'];
