@@ -63,8 +63,65 @@ class DB
         $arr = $res->fetchAll();
         return $arr;
     }
+
+    /**
+     * 根据查询条件将表中的is_delete字段设为1
+     * @param {string} $tablename 表名
+     * @param {string} $where 查询条件
+     * @return int
+     */
+    public function delete($tablename, $where)
+    {
+        $sql = "update $tablename set is_delete=1 where $where";
+        $res = $this->pdo->exec($sql);
+        return $res;
+    }
+
+    /**
+     * 根据查询条件和需要修改的数据修改相应表数据
+     * @param $tablename 表名
+     * @param $arr 以关联数组的形式传入需要修改的值
+     * @param $where 查询条件
+     * @return int 0表示没成功 1表示成功
+     */
+    public function update($tablename, $arr, $where)
+    {
+        $str = "";
+        foreach ($arr as $k => $v) {
+            $str .= "$k='" . $v . "',";
+        }
+        /**去除最后一个逗号*/
+        $str = substr($str, 0, -1);
+        /**拼接sql语句*/
+        $sql = "update $tablename set $str where $where";
+        $res = $this->pdo->exec($sql);
+        return $res;
+    }
+
+    /**
+     *根据id进行查询，并修改相应数据
+     * @param {string} $tablename 表名
+     * @param {array} $arr 需要修改的数据
+     * @param {int} $id 表的id字段
+     * @return int
+     */
+    public function updateById($tablename, $arr, $id)
+    {
+        $str = "";
+        foreach ($arr as $k => $v) {
+            $str .= "$k='" . $v . "',";
+        }
+        /**去除最后一个逗号*/
+        $str = substr($str, 0, -1);
+        /**拼接sql语句*/
+        $sql = "update $tablename set $str where id=$id";
+        $res = $this->pdo->exec($sql);
+        return $res;
+    }
 }
 
 $db = new DB();
-$city = $db->getAll('city');
-print_r($city);
+$city = $db->getAll("city");
+$db->delete("city", "id=2");
+$db->update("city", ["name" => "梧州", "uname" => "wuzhou"], "id=4");
+$db->updateById("city", ["name" => "广西", "uname" => "guangxi"], 6);
