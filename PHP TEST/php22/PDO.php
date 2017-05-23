@@ -101,7 +101,7 @@ class DB
     /**
      *根据id进行查询，并修改相应数据
      * @param {string} $tablename 表名
-     * @param {array} $arr 需要修改的数据
+     * @param mixed[] $arr 需要修改的数据
      * @param {int} $id 表的id字段
      * @return int
      */
@@ -118,6 +118,32 @@ class DB
         $res = $this->pdo->exec($sql);
         return $res;
     }
+
+    /**
+     * 根据关联数组的数据进行插入
+     * @param {string} $tablename 表名
+     * @param mixed[] $arr 关联数组 [列名=>需要的数据]
+     */
+    public function insert($tablename, $arr)
+    {
+        if (is_array($arr)) {
+            $keys = array();
+            $values = '';
+            foreach ($arr as $k => $v) {
+                $keys[] = $k;
+                $values .= "'" . $v . "',";
+            }
+            $column = implode(',', $keys);
+            $values = substr($values, 0, -1);
+            try {
+                $stmt = $this->pdo->prepare("insert into " . $tablename . "($column) values($values)");
+                $stmt->execute();
+                echo "数据插入成功";
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+        }
+    }
 }
 
 $db = new DB();
@@ -125,3 +151,4 @@ $city = $db->getAll("city");
 $db->delete("city", "id=2");
 $db->update("city", ["name" => "梧州", "uname" => "wuzhou"], "id=4");
 $db->updateById("city", ["name" => "广西", "uname" => "guangxi"], 6);
+$db->insert('city', ["name" => "潮汕", "uname" => "chaoshang", "parent_id" => 1]);
