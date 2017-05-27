@@ -144,6 +144,26 @@ class DB
             }
         }
     }
+
+    /**
+     * 获取最后插入的数据的id,结合insert使用
+     * @return string
+     */
+    public function lastId()
+    {
+        return $this->pdo->lastInsertId();
+    }
+
+    /**
+     * 抛出错误
+     * @throws Error
+     * @return void
+     */
+    public function errorMessage()
+    {
+        $msg = $this->pdo->errorInfo();
+        throw new Error('数据库错误：' . $msg[2]);
+    }
 }
 
 $db = new DB();
@@ -151,4 +171,6 @@ $city = $db->getAll("city");
 $db->delete("city", "id=2");
 $db->update("city", ["name" => "梧州", "uname" => "wuzhou"], "id=4");
 $db->updateById("city", ["name" => "广西", "uname" => "guangxi"], 6);
-$db->insert('city', ["name" => "潮汕", "uname" => "chaoshang", "parent_id" => 1]);
+$db->insert('city', ["name" => "潮汕2", "uname" => "chaoshang2", "parent_id" => 1]);
+$db->lastId();
+
