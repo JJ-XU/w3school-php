@@ -1,8 +1,9 @@
 <?php
 /**允许上传的图片后缀*/
-$allowedExts = array("gif", "jpeg", "jpg", "png");
+$allowedExts = ["gif", "jpeg", "jpg", "png"];
 $temp = explode(".", $_FILES["file"]["name"]);
 $extension = end($temp);        // 获取文件后缀名
+
 /**判断文件格式、文件大小和文件后缀是否满足条件*/
 if ((($_FILES["file"]["type"] == "image/gif")
         || ($_FILES["file"]["type"] == "image/jpeg")
@@ -24,4 +25,3 @@ if ((($_FILES["file"]["type"] == "image/gif")
 } else {
     echo "非法的文件格式";
 }
-?>
